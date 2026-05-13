@@ -1,227 +1,181 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Musical Interval Guesser</title>
+    <title>Parle, parle, jazz, jazz | Jazz Ouvrier en Abitibi-Témiscamingue</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        /* --- General Styling --- */
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f0f2f5;
-            color: #333;
+        :root {
+            --gold: #c5a059;
+            --dark: #1a1a1a;
+            --light: #f4f4f4;
+            --white: #ffffff;
         }
 
-        #game-container {
-            background-color: #ffffff;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Source Sans 3', sans-serif;
+            background-color: var(--dark);
+            color: var(--white);
+            line-height: 1.6;
+        }
+
+        header {
+            height: 80vh;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                        url('Groupe jazz Parle Parle Jazz Jazz.jpg') no-repeat 50% 42%;
+            background-size: cover;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding-bottom: 50px;
             text-align: center;
-            width: 90%;
-            max-width: 500px;
+        }
+
+        .hero-text {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 2rem 3rem;
+            border-top: 3px solid var(--gold);
         }
 
         h1 {
-            margin-top: 0;
-            color: #2c3e50;
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 4rem);
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
-        /* --- Staff and Notes --- */
-        #staff {
-            position: relative;
-            width: 300px;
-            height: 100px; /* Base height for 5 lines */
-            margin: 40px auto;
-            border-top: 2px solid black;   /* Top ledger line space */
-            border-bottom: 2px solid black;/* Bottom ledger line space */
+        .subtitle {
+            color: var(--gold);
+            font-size: 1.2rem;
+            font-weight: 300;
+            letter-spacing: 4px;
         }
 
-        .staff-line {
-            position: absolute;
-            width: 100%;
-            height: 2px;
-            background-color: black;
-            left: 0;
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 20px;
         }
 
-        /* Position each of the 5 staff lines */
-        .staff-line:nth-child(1) { top: 20px; }
-        .staff-line:nth-child(2) { top: 40px; }
-        .staff-line:nth-child(3) { top: 60px; }
-        .staff-line:nth-child(4) { top: 80px; }
-        .staff-line:nth-child(5) { top: 100px; }
-
-        .note {
-            position: absolute;
-            width: 26px;
-            height: 20px;
-            background-color: #333;
-            border-radius: 50%;
-            transform: translateY(-50%); /* Center the note on its position */
+        section {
+            margin-bottom: 3rem;
         }
 
-        #note1 { left: 100px; }
-        #note2 { left: 160px; }
-
-        /* --- Controls and Feedback --- */
-        #controls {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 20px;
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: #ccc;
         }
 
-        .btn {
-            padding: 10px 15px;
-            font-size: 16px;
-            border: 2px solid #3498db;
-            background-color: white;
-            color: #3498db;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.2s ease;
+        .highlight-box {
+            border-left: 2px solid var(--gold);
+            padding-left: 25px;
+            margin: 40px 0;
         }
 
-        .btn:hover {
-            background-color: #3498db;
-            color: white;
-        }
-        
-        #next-btn {
-            border-color: #2ecc71;
-            color: #2ecc71;
+        h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--gold);
+            font-size: 2rem;
         }
 
-        #next-btn:hover {
-            background-color: #2ecc71;
-            color: white;
+        .contact-card {
+            background: #252525;
+            padding: 3rem;
+            border-radius: 4px;
+            text-align: center;
+            border: 1px solid #333;
         }
 
-        #feedback {
+        .contact-info {
             margin-top: 20px;
-            font-size: 1.2em;
-            font-weight: bold;
-            height: 30px;
         }
 
-        .correct { color: #2ecc71; }
-        .incorrect { color: #e74c3c; }
+        .contact-info a {
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: 600;
+            display: block;
+            margin: 10px 0;
+            font-size: 1.2rem;
+        }
 
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--dark);
+            padding: 5px 15px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            border-radius: 2px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.8rem;
+            color: #666;
+            border-top: 1px solid #333;
+        }
+
+        @media (max-width: 600px) {
+            header { height: 60vh; }
+            .hero-text { width: 100%; padding: 1.5rem; }
+        }
     </style>
 </head>
 <body>
 
-    <div id="game-container">
-        <h1>What Interval Is This?</h1>
-        
-        <div id="staff">
-            <div class="staff-line"></div>
-            <div class="staff-line"></div>
-            <div class="staff-line"></div>
-            <div class="staff-line"></div>
-            <div class="staff-line"></div>
-            <div id="note1" class="note"></div>
-            <div id="note2" class="note"></div>
+    <header>
+        <div class="hero-text">
+            <div class="subtitle">ENSEMBLE MUSICAL</div>
+            <h1>Parle, parle, jazz, jazz</h1>
         </div>
+    </header>
 
-        <div id="controls">
-            <button class="btn answer-btn" data-interval="2">Second (2)</button>
-            <button class="btn answer-btn" data-interval="3">Third (3)</button>
-            <button class="btn answer-btn" data-interval="4">Fourth (4)</button>
-            <button class="btn answer-btn" data-interval="5">Fifth (5)</button>
-            <button class="btn answer-btn" data-interval="6">Sixth (6)</button>
-            <button class="btn answer-btn" data-interval="7">Seventh (7)</button>
-        </div>
+    <div class="container">
+        <section>
+            <div class="badge">FINALISTE GALA RÉGAL 2025</div>
+            <p><strong>Vous êtes organisateur d’événement ? Planificateur de mariage ou locateur de salle ?</strong></p>
+            <p> Voici une suggestion pour vos clients et invités : Agrémenter vos festivités avec une ambiance musicale élégante et conviviale grâce au groupe Abitibien <strong>Parle, parle, jazz, jazz !</strong></p>
+            
+            <div class="highlight-box">
+                <p>Composé de quatre musiciens professionnels, notre quatuor propose des prestations adaptées aux contextes corporatifs, institutionnels et familiaux. Notre répertoire varié parcourt les classiques du jazz américains, français et québécois, ainsi que des pièces contemporaines.</p>
+            </div>
+        </section>
 
-        <button class="btn" id="next-btn">Next Interval</button>
-        
-        <div id="feedback"></div>
+        <section>
+            <h2>L'Ambiance Parfaite</h2>
+            <p>Idéale pour des cocktails, galas, soirées de reconnaissance, soupers de noces, lancements ou vernissages. Notre musique — instrumentale ou chantée — est accessible et rassembleuse. Elle s’intègre naturellement à vos festivités, qu’il s’agisse d’une présence discrète favorisant les échanges ou d’une animation plus dynamique.</p>
+        </section>
+
+        <section class="contact-card">
+            <h2>Réservations & Informations</h2>
+            <p>Nous serions heureux d’échanger avec vous pour vous proposer une formule adaptée à vos projets.</p>
+            
+            <div class="contact-info">
+                <strong>Chantal Polard</strong>
+                <span style="display:block; font-size: 0.9rem; color: #888;">Agente de booking</span>
+                <a href="tel:8192901850">819 290-1850</a>
+                <a href="mailto:parleparlejazzjazz@gmail.com">parleparlejazzjazz@gmail.com</a>
+            </div>
+        </section>
     </div>
 
-    <script>
-        // --- DOM Elements ---
-        const note1 = document.getElementById('note1');
-        const note2 = document.getElementById('note2');
-        const feedback = document.getElementById('feedback');
-        const nextBtn = document.getElementById('next-btn');
-        const answerBtns = document.querySelectorAll('.answer-btn');
+    <footer>
+        &copy; 2026 Parle, parle, jazz, jazz — Rouyn-Noranda, Québec.
+    </footer>
 
-        // --- Game State ---
-        let currentInterval = 0;
-
-        // --- Game Logic ---
-
-        const POSITIONS_COUNT = 11; 
-        const PIXELS_PER_STEP = 10;
-
-        function generateNewInterval() {
-            feedback.textContent = '';
-            feedback.className = '';
-            answerBtns.forEach(btn => btn.disabled = false);
-
-            const intervalSize = Math.floor(Math.random() * 6) + 2;
-            currentInterval = intervalSize;
-            
-            const distanceInSteps = intervalSize - 1;
-
-            const maxFirstNotePos = POSITIONS_COUNT - 1 - distanceInSteps;
-            const firstNotePosIndex = Math.floor(Math.random() * (maxFirstNotePos + 1));
-            const secondNotePosIndex = firstNotePosIndex + distanceInSteps;
-
-            const staffHeight = (POSITIONS_COUNT - 1) * PIXELS_PER_STEP;
-            note1.style.top = `${staffHeight - (firstNotePosIndex * PIXELS_PER_STEP)}px`;
-            note2.style.top = `${staffHeight - (secondNotePosIndex * PIXELS_PER_STEP)}px`;
-        }
-        
-        function checkAnswer(userGuess) {
-            // Prevent multiple guesses for the same interval
-            if (answerBtns[0].disabled) return;
-
-            answerBtns.forEach(btn => btn.disabled = true);
-            
-            if (userGuess === currentInterval) {
-                feedback.textContent = 'Correct! 🎉';
-                feedback.className = 'correct';
-                setTimeout(generateNewInterval, 300);
-            } else {
-                const intervalNames = {2: 'Second', 3: 'Third', 4: 'Fourth', 5: 'Fifth', 6: 'Sixth', 7: 'Seventh'};
-                feedback.textContent = `Incorrect. It was a ${intervalNames[currentInterval]}.`;
-                feedback.className = 'incorrect';
-            }
-        }
-        
-        // **NEW** Function to handle keyboard input
-        function handleKeyPress(event) {
-            const key = event.key;
-            if (key >= '2' && key <= '7') {
-                const guess = parseInt(key);
-                checkAnswer(guess);
-            }
-        }
-
-        // --- Event Listeners ---
-        nextBtn.addEventListener('click', generateNewInterval);
-
-        answerBtns.forEach(button => {
-            button.addEventListener('click', () => {
-                const guess = parseInt(button.dataset.interval);
-                checkAnswer(guess);
-            });
-        });
-        
-        // **NEW** Add a global listener for keydown events
-        window.addEventListener('keydown', handleKeyPress);
-
-        // --- Initial Load ---
-        window.addEventListener('load', generateNewInterval);
-
-    </script>
 </body>
 </html>
